@@ -4,10 +4,20 @@ namespace Restall.Minefield
 {
 	public class GameLoop : IGameLoop
 	{
-		public GameLoop(object value1, object value2)
+		private readonly IGameLoopIteration gameLoopIteration;
+		private readonly IRenderFrames frameRenderer;
+
+		public GameLoop(IGameLoopIteration gameLoopIteration, IRenderFrames frameRenderer)
 		{
+			this.gameLoopIteration = gameLoopIteration ?? throw new ArgumentNullException(nameof(gameLoopIteration));
+			this.frameRenderer = frameRenderer ?? throw new ArgumentNullException(nameof(frameRenderer));
 		}
 
-		public void Run() => throw new NotImplementedException();
+		public void Run()
+		{
+			this.frameRenderer.Render();
+			while (this.gameLoopIteration.Run())
+				;;
+		}
 	}
 }
