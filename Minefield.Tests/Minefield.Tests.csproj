@@ -1,0 +1,42 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<AssemblyName>Minefield.Tests</AssemblyName>
+		<RootNamespace>Restall.Minefield.Tests</RootNamespace>
+		<Authors>Pete Restall</Authors>
+		<Company>Parity Computer Consultancy Limited</Company>
+		<Description>Tests for the basic 'minefield game'.</Description>
+		<Copyright>(C) Pete Restall 2024 &lt;pete@restall.net&gt;</Copyright>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<PackageProjectUrl>https://github.com/pete-restall/CodingTest-20240411/</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/pete-restall/CodingTest-20240411/</RepositoryUrl>
+		<PackageTags>restall coding test minefield game .net dotnet</PackageTags>
+		<PackageIconUrl></PackageIconUrl>
+		<VersionPrefix Condition="'$(VersionPrefix)' == ''">0.1.0</VersionPrefix>
+		<VersionSuffix Condition="'$(VersionSuffix)' == ''">local</VersionSuffix>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<WarningsAsErrors />
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="../Minefield/Minefield.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Castle.Core" Version="5.1.1" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
+		<PackageReference Include="FluentAssertions" Version="6.12.0" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
+		<PackageReference Include="NSubstitute" Version="5.1.0" />
+		<PackageReference Include="Scrutor" Version="4.2.2" />
+		<PackageReference Include="xunit" Version="2.7.0" />
+		<PackageReference Include="xunit.abstractions" Version="2.0.3" />
+		<PackageReference Include="xunit.analyzers" Version="1.11.0" />
+		<PackageReference Include="xunit.core" Version="2.7.0" />
+		<PackageReference Include="xunit.runner.visualstudio" Version="2.5.7">
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+			<PrivateAssets>all</PrivateAssets>
+		</PackageReference>
+	</ItemGroup>
+</Project>
