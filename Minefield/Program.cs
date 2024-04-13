@@ -22,13 +22,18 @@ namespace Restall.Minefield
 				services
 					.Scan(scan => scan
 						.FromAssemblyOf<IGameLoop>()
-						.AddClasses(classes => classes.WithoutAttribute<ChainOfResponsibilityAttribute>())
-						.AsSelfWithInterfaces()
-						.WithSingletonLifetime())
+							.AddClasses(classes => classes.WithoutAttribute<ChainOfResponsibilityAttribute>())
+								.AsSelfWithInterfaces()
+								.WithSingletonLifetime())
 
-					.AddSingleton(ctx => new KeyboardPlayerInputReader(
-						Console.ReadKey,
-						ctx.ConditionalMapperChainFor<ConsoleKeyInfo, IPlayerInput>(withDefault: new UnknownPlayerInput())));
+					.Decorate(typeof(IEvaluatePlayerInput<>), typeof(PlayerInputEvaluationAdaptor<>))
+
+					.AddSingleton(ctx => new GameLoopIteration(
+						new KeyboardPlayerInputReader(
+							Console.ReadKey,
+							ctx.ConditionalMapperChainFor<ConsoleKeyInfo, IPlayerInput>(withDefault: new UnknownPlayerInput())),
+						new PlayerInputEvaluationChain(ctx.GetServices<IEvaluatePlayerInput>()),
+						ctx.GetRequiredService<IRenderFrames>()));
 			});
 
 		private static ConditionalMapperChain<TFrom, TTo> ConditionalMapperChainFor<TFrom, TTo>(this IServiceProvider diContext, TTo withDefault) => new(

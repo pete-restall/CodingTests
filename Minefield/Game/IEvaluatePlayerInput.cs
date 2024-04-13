@@ -4,4 +4,9 @@ namespace Restall.Minefield.Game
 	{
 		void Evaluate(IPlayerInput playerInput);
 	}
+
+	public interface IEvaluatePlayerInput<T> where T : IPlayerInput
+	{
+		void Evaluate(T playerInput);
+	}
 }
