@@ -2,6 +2,7 @@
 using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Restall.Minefield.Game;
 using Restall.Minefield.Mappers;
 
 namespace Restall.Minefield

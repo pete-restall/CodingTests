@@ -1,9 +1,10 @@
 using System;
 using FluentAssertions;
 using Lophtware.Testing.Utilities.NonDeterminism.PrimitiveGeneration;
+using Restall.Minefield.Game;
 using Xunit;
 
-namespace Restall.Minefield.Tests.Unit
+namespace Restall.Minefield.Tests.Unit.Game
 {
 	public class KeyboardPlayerInputReaderTest
 	{

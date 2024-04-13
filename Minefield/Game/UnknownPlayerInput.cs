@@ -1,4 +1,4 @@
-namespace Restall.Minefield
+namespace Restall.Minefield.Game
 {
 	public class UnknownPlayerInput : IPlayerInput
 	{

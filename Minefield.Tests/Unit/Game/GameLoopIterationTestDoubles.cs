@@ -1,8 +1,9 @@
 using System.Linq;
 using Lophtware.Testing.Utilities;
 using NSubstitute;
+using Restall.Minefield.Game;
 
-namespace Restall.Minefield.Tests.Unit
+namespace Restall.Minefield.Tests.Unit.Game
 {
 	public static class GameLoopIterationTestDoubles
 	{

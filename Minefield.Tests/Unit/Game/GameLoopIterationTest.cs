@@ -1,9 +1,10 @@
 using System;
 using FluentAssertions;
 using NSubstitute;
+using Restall.Minefield.Game;
 using Xunit;
 
-namespace Restall.Minefield.Tests.Unit
+namespace Restall.Minefield.Tests.Unit.Game
 {
 	public class GameLoopIterationTest
 	{
