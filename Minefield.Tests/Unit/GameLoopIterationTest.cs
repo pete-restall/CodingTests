@@ -58,7 +58,7 @@ namespace Restall.Minefield.Tests.Unit
 		}
 
 		[Fact]
-		public void Run_CalledWhenPlayerInputIsQuitGamePlayerInput_ExpectPlayerInputEvaluatorReturnsFalse()
+		public void Run_CalledWhenPlayerInputIsQuitGame_ExpectFalseIsReturned()
 		{
 			var playerInputReader = ReadPlayerInputTestDoubles.StubFor(new QuitGamePlayerInput());
 			var gameLoopIteration = new GameLoopIteration(playerInputReader, EvaluatePlayerInputTestDoubles.Dummy(), RenderFramesTestDoubles.Dummy());
@@ -66,7 +66,7 @@ namespace Restall.Minefield.Tests.Unit
 		}
 
 		[Fact]
-		public void Run_CalledWhenPlayerInputIsQuitGamePlayerInput_ExpectPlayerInputEvaluatorIsNotCalled()
+		public void Run_CalledWhenPlayerInputIsQuitGame_ExpectPlayerInputEvaluatorIsNotCalled()
 		{
 			var playerInputEvaluator = EvaluatePlayerInputTestDoubles.Mock();
 			var playerInputReader = ReadPlayerInputTestDoubles.StubFor(new QuitGamePlayerInput());
@@ -76,7 +76,7 @@ namespace Restall.Minefield.Tests.Unit
 		}
 
 		[Fact]
-		public void Run_CalledWhenPlayerInputIsNotQuitGamePlayerInput_ExpectPlayerInputEvaluatorReturnsTrue()
+		public void Run_CalledWhenPlayerInputIsNotQuitGameOrUnknownPlayerInput_ExpectTrueIsReturned()
 		{
 			var anythingOtherThanQuitGamePlayerInput = PlayerInputTestDoubles.Dummy();
 			var playerInputReader = ReadPlayerInputTestDoubles.StubFor(anythingOtherThanQuitGamePlayerInput);
@@ -106,7 +106,7 @@ namespace Restall.Minefield.Tests.Unit
 		}
 
 		[Fact]
-		public void Run_CalledWhenPlayerInputIsNotQuitGamePlayerInput_ExpectFrameIsRenderedAfterPlayerInputHasBeenEvaluated()
+		public void Run_CalledWhenPlayerInputIsNotQuitGame_ExpectFrameIsRenderedAfterPlayerInputHasBeenEvaluated()
 		{
 			var frameRenderer = RenderFramesTestDoubles.Mock();
 			var playerInputReader = ReadPlayerInputTestDoubles.StubFor(new QuitGamePlayerInput());
@@ -116,7 +116,7 @@ namespace Restall.Minefield.Tests.Unit
 		}
 
 		[Fact]
-		public void Run_CalledWhenPlayerInputIsQuitGamePlayerInput_ExpectFrameIsRenderedAfterPlayerInputHasBeenEvaluated()
+		public void Run_CalledWhenPlayerInputIsQuitGame_ExpectFrameIsRenderedAfterPlayerInputHasBeenEvaluated()
 		{
 			var playerInputEvaluator = EvaluatePlayerInputTestDoubles.Mock();
 			var frameRenderer = RenderFramesTestDoubles.Mock();
@@ -129,6 +129,34 @@ namespace Restall.Minefield.Tests.Unit
 				playerInputEvaluator.Evaluate(Arg.Any<IPlayerInput>());
 				frameRenderer.Render();
 			});
+		}
+
+		[Fact]
+		public void Run_CalledWhenPlayerInputIsUnknown_ExpectTrueIsReturned()
+		{
+			var playerInputReader = ReadPlayerInputTestDoubles.StubFor(new UnknownPlayerInput());
+			var gameLoopIteration = new GameLoopIteration(playerInputReader, EvaluatePlayerInputTestDoubles.Dummy(), RenderFramesTestDoubles.Dummy());
+			gameLoopIteration.Run().Should().BeTrue();
+		}
+
+		[Fact]
+		public void Run_CalledWhenPlayerInputIsUnknown_ExpectPlayerInputEvaluatorIsNotCalled()
+		{
+			var playerInputEvaluator = EvaluatePlayerInputTestDoubles.Mock();
+			var playerInputReader = ReadPlayerInputTestDoubles.StubFor(new UnknownPlayerInput());
+			var gameLoopIteration = new GameLoopIteration(playerInputReader, playerInputEvaluator, RenderFramesTestDoubles.Dummy());
+			gameLoopIteration.Run();
+			playerInputEvaluator.DidNotReceive().Evaluate(Arg.Any<IPlayerInput>());
+		}
+
+		[Fact]
+		public void Run_CalledWhenPlayerInputIsUnknown_ExpectFrameIsNotRendered()
+		{
+			var frameRenderer = RenderFramesTestDoubles.Mock();
+			var playerInputReader = ReadPlayerInputTestDoubles.StubFor(new UnknownPlayerInput());
+			var gameLoopIteration = new GameLoopIteration(playerInputReader, EvaluatePlayerInputTestDoubles.Dummy(), frameRenderer);
+			gameLoopIteration.Run();
+			frameRenderer.DidNotReceive().Render();
 		}
 	}
 }

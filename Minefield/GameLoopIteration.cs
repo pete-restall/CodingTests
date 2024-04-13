@@ -18,12 +18,13 @@ namespace Restall.Minefield
 		public bool Run()
 		{
 			var playerInput = this.playerInputReader.Read() ?? throw new InvalidOperationException("Player Input Reader returned null");
-			if (playerInput is QuitGamePlayerInput)
-				return false;
+			if (playerInput is not UnknownPlayerInput and not QuitGamePlayerInput)
+			{
+				this.playerInputEvaluator.Evaluate(playerInput);
+				this.frameRenderer.Render();
+			}
 
-			this.playerInputEvaluator.Evaluate(playerInput);
-			this.frameRenderer.Render();
-			return true;
+			return playerInput is not QuitGamePlayerInput;
 		}
 	}
 }
