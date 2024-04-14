@@ -57,4 +57,18 @@ Please see the [second commit](chttps://github.com/pete-restall/CodingTests/ommi
 
 There is a lot that I can say regarding how these tests have been developed - the introduction of non-determinism to reduce the number of tests that need to be written and to test a broader range of inputs, for example.  Or the use of fluent assertions and explicitly calling out which Test Doubles are Mocks, Stubs and Dummies to aid the comprehension of the tests.  Please ask if you would like to discuss these details - I will not document them here for brevity.
 
-From the [second commit](https://github.com/pete-restall/CodingTests/commit/50b841fc02318ad939a1c772586afdce55fb4583) you can also see that there are two further stubs that have been created - `GameLoopIteration` and `FrameRenderer`, both of which are throwing `NotImplementedExceptions`.  The next commit will tackle one of these classes and provide an implementation, much like this commit provided the implementation for the `GameLoop` stub.  This process will be followed until the program has been completed and this commit illustrates the way in which writing the tests first is a powerful technique to drive the design and development of an application in an incremental manner.
+From the [second commit](https://github.com/pete-restall/CodingTests/commit/50b841fc02318ad939a1c772586afdce55fb4583) you can also see that there are two further stubs that have been created - `GameLoopIteration` and `FrameRenderer`, both of which are throwing `NotImplementedExceptions`.  The next commit will tackle one of these classes and provide an implementation, much like this commit provided the implementation for the `GameLoop` stub.  This process will be followed until the program has been completed.  This second commit illustrates the way in which writing the tests first is a powerful technique to drive the design and development of an application in an incremental manner.
+
+## Conclusion
+I have spent more than the alotted time on this test but I do not know by how much - I have tackled it piecemeal over the last four days as time allowed.  The solution is far from complete but there is an extensible Game Loop that can respond to the pressing of the `Q` key to quit and the `Up Arrow` key to trigger evaluation of the 'Move Player Up' command, which has not been written yet.  If I was to continue elaborating this solution then the movement of the Player around the Grid would be the next part to be implemented, no doubt necessitating the creation of classes such as `Grid` and `Coordinates` and `Player` and so on.
+
+Even though there is little functionality of the game itself, there is enough interesting material here that can be discussed further and more in-depth.  For instance, part of my approach to problem solving and software development has been documented.  The code
+* is SOLID
+* demonstrates Inversion of Control (note the direction of the namespace dependencies for all but the Composition Root, for example, and the interfaces living with their clients and not their implementations)
+* demonstrates some Dependency Injection with techniques such as convention-based binding
+* has been implemented using some common design patterns, such as the Chain of Responsibility and the Decorator patterns
+* has been written in a top-down, test-driven manner (TDD)
+* follows the guidelines set out in Clean Code, such as method ordering and naming
+* is highly cohesive, grouping by features of the domain rather than technical concerns; for example the `MoveUp` namespace would contain a vertical slice of everything needed to perform that movement
+
+I look forward to a more in-depth discussion with yourselves.  Please also look at my [other](https://github.com/pete-restall) GitHub [repositories](https://githum.com/lophtware) for examples of some of my more complete and varied projects.  Thank you.
