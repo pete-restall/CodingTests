@@ -1,6 +1,5 @@
 using System;
 using FluentAssertions;
-using Lophtware.Testing.Utilities.NonDeterminism.PrimitiveGeneration;
 using Restall.Minefield.Game;
 using Xunit;
 
@@ -28,19 +27,12 @@ namespace Restall.Minefield.Tests.Unit.Game
 				.And.ParamName.Should().Be("keyToPlayerInputMapper");
 		}
 
-		private static ConsoleKeyInfo DummyReadKey() => AnyKey();
-
-		private static ConsoleKeyInfo AnyKey() => new(
-			(char) IntegerGenerator.WithinInclusiveRange(0, 255),
-			EnumGenerator.AnyDefined<ConsoleKey>(),
-			shift: BooleanGenerator.Any(),
-			alt: BooleanGenerator.Any(),
-			control: BooleanGenerator.Any());
+		private static ConsoleKeyInfo DummyReadKey() => ConsoleKeyInfoGenerator.Any();
 
 		[Fact]
 		public void Read_Called_ExpectMappedKeyIsReturned()
 		{
-			var key = AnyKey();
+			var key = ConsoleKeyInfoGenerator.Any();
 			var playerInput = PlayerInputTestDoubles.Dummy();
 			var keyToPlayerInputMapper = MapTestDoubles.StubFor(key, playerInput);
 			var inputReader = new KeyboardPlayerInputReader(() => key, keyToPlayerInputMapper);
