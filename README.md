@@ -39,7 +39,7 @@ Because we have made the decision to use a blocking operation for keypresses (fo
 ### The Code
 In the absence of any provided coding standards, I will opt for my own style which is based on the guidelines set out in Clean Code but with the norms of C# rather than Java (PascalCase rather than camelCase for method names, for example).
 
-The Problem Statement is instructing me to set aside 2 hours and the emphasis is on quality and not quantity.  I will be adding to the repository as time allows over a period of several days but I do not envisage the exercise will be completed within 2 hours due to various other commitments.  Hopefully there is sufficient here to give a fair impression of my work but there is also a handful of other hardware, software and firmware examples in my personal GitHub repositories [here](https://github.com/pete-restall) and [here](https://githum.com/lophtware).
+The Problem Statement is instructing me to set aside 2 hours and the emphasis is on quality and not quantity.  I will be adding to the repository as time allows over a period of several days but I do not envisage the exercise will be completed within 2 hours due to various other commitments.  Hopefully there is sufficient here to give a fair impression of my work but there is also a handful of other hardware, software and firmware examples in my personal GitHub repositories [here](https://github.com/pete-restall) and [here](https://github.com/lophtware).
 
 Convention-based Dependency Injection will be leveraged based on Scrutor - this should prevent the Big Ball of Mud that the default Microsoft DI framework encourages.  This application is not envisaged to be large enough to properly benefit from this but wishing to see an approach to DI was mentioned in correspondence outside of the Problem Statement.
 
@@ -71,4 +71,4 @@ Even though there is little functionality of the game itself, there is enough in
 * follows the guidelines set out in Clean Code, such as method ordering and naming
 * is highly cohesive, grouping by features of the domain rather than technical concerns; for example the `MoveUp` namespace would contain a vertical slice of everything needed to perform that movement
 
-I look forward to a more in-depth discussion with yourselves.  Please also look at my [other](https://github.com/pete-restall) GitHub [repositories](https://githum.com/lophtware) for examples of some of my more complete and varied projects.  Thank you.
+I look forward to a more in-depth discussion with yourselves.  Please also look at my [other](https://github.com/pete-restall) GitHub [repositories](https://github.com/lophtware) for examples of some of my more complete and varied projects.  Thank you.
